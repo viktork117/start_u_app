@@ -1,0 +1,55 @@
+{
+  "expo": {
+    "name": "StartU",
+    "slug": "Start University",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/iconApp/IconApp.png",
+    "scheme": "StartU",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/iconApp/IconApp.png",
+        "backgroundColor": "#ADD3DE"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.viktor_k1001.my_expo_app",
+      "navigationBar": {
+        "visible": "immersive"
+      },
+      "statusBar": {
+        "hidden": true
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splashScreen/SplashScreen.png",
+          "backgroundColor": "#ADD3DE",
+          "imageWidth": 200,
+          "resizeMode": "cover"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "efd02bdb-c21c-4ad6-bc4e-1566015a9996"
+      }
+    }
+  }
+}
