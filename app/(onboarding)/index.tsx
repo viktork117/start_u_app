@@ -1,30 +1,42 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { useRouter } from 'expo-router';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
-const Onboarding = () => {
+import PatternedBackground from '@/components/Onboarding/PatternedBackground';
+
+const OnboardingHello = () => {
+  const routs = useRouter();
+
+  const fnNavigatePage = (numPage: number) => {
+    switch (numPage) {
+      case 2:
+        routs.navigate("/onboarding-course");
+        break;
+      case 3:
+        routs.navigate("/onboarding-course");
+        break;
+      case 4: 
+        routs.navigate("/onboarding-finish");
+        break;
+      default:
+        routs.navigate("/");
+        break;
+    }
+  }
+
   return (
-    <View>
-      <Text style={{ color: "white" }}>Hello, World 112</Text>
-    </View>
+    <PatternedBackground>
+      <View>
+        <Text style={{ color: "white" }}>Hello, World 1</Text>
+        <Button title="Hello, World 2" onPress={() => fnNavigatePage(2)} />
+        <Button title="Hello, World 3" onPress={() => fnNavigatePage(3)} />
+        <Button title="Hello, World 4" onPress={() => fnNavigatePage(4)} />
+      </View>
+    </PatternedBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
+  titleContainer: {}
 });
 
-export default Onboarding;
+export default OnboardingHello;

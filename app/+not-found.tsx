@@ -1,10 +1,10 @@
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default function NotFoundScreen() {
   return (
-    <>
-      <Text>Hello World</Text>
-    </>
+    <View>
+      <Text style={{color: "white"}}>Not found</Text>
+    </View>
   );
 }
 
