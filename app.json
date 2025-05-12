@@ -40,7 +40,8 @@
           "imageWidth": 200,
           "resizeMode": "cover"
         }
-      ]
+      ],
+      "expo-sqlite"
     ],
     "experiments": {
       "typedRoutes": true

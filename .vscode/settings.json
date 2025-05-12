@@ -3,5 +3,14 @@
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit",
     "source.sortMembers": "explicit"
-  }
+  },
+  "cSpell.words": [
+    "ПМКИ",
+    "fisp",
+    "fsip",
+    "NSXL",
+    "pmki",
+    "pois",
+    "povt"
+  ]
 }

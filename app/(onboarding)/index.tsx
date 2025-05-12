@@ -1,42 +1,57 @@
+import React, { memo, useCallback, useEffect } from 'react';
 import { useRouter } from 'expo-router';
-import { Button, StyleSheet, Text, View } from 'react-native';
 
+import ButtonGreen from '@/components/Buttons/ButtonGreen';
+import CommentOnboarding from '@/components/Onboarding/CommentOnboarding';
 import PatternedBackground from '@/components/Onboarding/PatternedBackground';
+
+import { onboarding } from '@/constants/Colors';
+import { onboardingText } from "@/language/ru"
+
+import { getUsers, addUser, clearUsersTableAndResetId } from '@/stores/db/init';
 
 const OnboardingHello = () => {
   const routs = useRouter();
+  const { buttonGreenBackground, buttonGreenText } = onboarding;
+  const {
+    startTextOne,
+    startTextTwo,
+    startTextButton
+  } = onboardingText;
 
-  const fnNavigatePage = (numPage: number) => {
-    switch (numPage) {
-      case 2:
-        routs.navigate("/onboarding-course");
-        break;
-      case 3:
-        routs.navigate("/onboarding-course");
-        break;
-      case 4: 
-        routs.navigate("/onboarding-finish");
-        break;
-      default:
-        routs.navigate("/");
-        break;
-    }
-  }
+  const fnOnClick = useCallback(() => {
+    clearUsersTableAndResetId();
+    routs.navigate("/onboarding-course")
+  }, [routs]);
+
+  const group = "afaf";
+  const course = "dasasdasd"
+
+
+  const getUser: any = async () => {
+    await addUser(group, course);
+    await getUsers()
+  };
+
+  useEffect(() => {
+    getUser();
+
+  }, [group, course])
 
   return (
     <PatternedBackground>
-      <View>
-        <Text style={{ color: "white" }}>Hello, World 1</Text>
-        <Button title="Hello, World 2" onPress={() => fnNavigatePage(2)} />
-        <Button title="Hello, World 3" onPress={() => fnNavigatePage(3)} />
-        <Button title="Hello, World 4" onPress={() => fnNavigatePage(4)} />
-      </View>
+      <CommentOnboarding 
+        textOne={startTextOne}
+        textTwo={startTextTwo}
+      />
+      <ButtonGreen
+        text={startTextButton}
+        onClick={fnOnClick}
+        backgroundColor={buttonGreenBackground}
+        textColor={buttonGreenText}
+      />
     </PatternedBackground>
   );
 }
 
-const styles = StyleSheet.create({
-  titleContainer: {}
-});
-
-export default OnboardingHello;
+export default memo(OnboardingHello);

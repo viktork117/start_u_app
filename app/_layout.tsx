@@ -1,8 +1,13 @@
-import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
+import { useEffect } from 'react';
 // import * as SplashScreen from 'expo-splash-screen';
+import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
+
+import { openDatabaseSync } from 'expo-sqlite';
+
+import { initializeDatabase, addUser } from '@/stores/db/init';
 
 import 'react-native-reanimated';
 
@@ -15,8 +20,21 @@ import 'react-native-reanimated';
 
 export default function RootLayout() {
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    SeymourOne: require('../assets/fonts/SeymourOne-Regular.ttf'),
+    NatoSans: require('../assets/fonts/NotoSans.ttf'),
   });
+
+  const fnInitDB = () => {
+    try {
+      initializeDatabase();
+    } catch (e) {
+      console.warn(e);
+    }
+  }
+
+  useEffect(() => {
+    fnInitDB();
+  }, []);
 
   if (!loaded) {
     // Async font loading only occurs in development.
@@ -27,10 +45,10 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorsTheme}>
-        <Stack>
-          <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" options={{ headerShown: false }} />
-        </Stack>
+      <Stack>
+        <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
+        <Stack.Screen name="+not-found" options={{ headerShown: false }} />
+      </Stack>
       <StatusBar style="light" />
     </ThemeProvider>
   );

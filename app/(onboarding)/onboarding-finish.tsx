@@ -1,23 +1,49 @@
 import { useRouter } from "expo-router";
-import { Button, StyleSheet, Text, View } from "react-native";
 
+import ButtonGreen from "@/components/Buttons/ButtonGreen";
+import ButtonText from "@/components/Buttons/ButtonText";
+import CommentComponent from "@/components/Onboarding/CommentOnboarding";
 import PatternedBackground from "@/components/Onboarding/PatternedBackground";
 
+import { onboardingText, textButton } from "@/language/ru";
+import { onboarding } from "@/constants/Colors";
+
 const OnboardingFinish = () => {
+  const {
+    finishTextOne,
+    finishTextTwo
+  } = onboardingText;
+  const {
+    next,
+    back
+  } = textButton;
+  const {
+    buttonGreenBackground,
+    buttonGreenText,
+    buttonSelectionText,
+  } = onboarding;
+
   const routs = useRouter();
 
   return (
     <PatternedBackground>
-      <View>
-        <Button title="back" onPress={() => routs.back()} />
-        <Text style={{ color: "white" }}>Hello, World 4</Text>
-      </View>
+      <CommentComponent 
+        textOne={finishTextOne}
+        textTwo={finishTextTwo}
+      />
+      <ButtonGreen
+        text={next}
+        onClick={() => {}}
+        backgroundColor={buttonGreenBackground}
+        textColor={buttonGreenText}
+      />
+      <ButtonText
+        text={back}
+        onClick={() => routs.back()}
+        textColor={buttonSelectionText}
+      />
     </PatternedBackground>
   );
 };
-
-const styles = StyleSheet.create({
-  titleContainer: {},
-});
 
 export default OnboardingFinish;

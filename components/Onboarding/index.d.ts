@@ -9,5 +9,10 @@ export type TPatternedBackground = {
   imageBackgroundStyle?: StyleProp<ViewStyle>;
   safeAreaStyle?: StyleProp<ViewStyle>;
   resizeMode?: ImageResizeMode;
-  children: ReactNode;
+  children: ReactNode[] | ReactNode;
+}
+
+export type CommentOnboardingProps = {
+  textOne?: string;
+  textTwo: string; 
 }

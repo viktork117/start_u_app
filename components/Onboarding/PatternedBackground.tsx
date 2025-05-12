@@ -1,12 +1,13 @@
-import React, { memo, type FC } from "react";
-import { ImageBackground, StyleSheet } from "react-native";
+import React, { memo, useMemo, type FC } from "react";
+import { ImageBackground, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import Colors from "@/constants/Colors";
+import { onboarding } from "@/constants/Colors";
 
 import image from "../../assets/images/onboardingBackground/OnboardingBackground.png";
 
 import { type TPatternedBackground } from "./";
+import { OnboardingColorsType } from "@/constants";
 
 const PatternedBackground: FC<TPatternedBackground> = ({
   imageBackgroundStyle,
@@ -14,6 +15,8 @@ const PatternedBackground: FC<TPatternedBackground> = ({
   resizeMode,
   children,
 }) => {
+  const styles = useMemo(() => fnStyles(onboarding), []);
+
   return (
     <ImageBackground
       source={image}
@@ -21,19 +24,36 @@ const PatternedBackground: FC<TPatternedBackground> = ({
       style={[styles.imageBackgroundDefault, imageBackgroundStyle ?? ""]}
     >
       <SafeAreaView style={[ styles.safeAreaDefault, safeAreaStyle ?? "" ]}>
-        {children}
+        <View style={styles.container}>
+          <View style={styles.containerChild}>
+            {children}  
+          </View>
+        </View>
       </SafeAreaView>
     </ImageBackground>
   );
 }
 
-const styles = StyleSheet.create({
+const fnStyles = (
+  colors: OnboardingColorsType
+) => StyleSheet.create({
   imageBackgroundDefault: {
     flex: 1,
-    backgroundColor: Colors.onboardingBackground,
+    backgroundColor: colors.background,
   },
   safeAreaDefault: {
     flex: 1,
+    paddingHorizontal: 24,
+  },
+  container: {
+    display: "flex",
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+  },
+  containerChild: {
+    rowGap: 30,
+    marginTop: 30 
   }
 })
 
