@@ -5,10 +5,10 @@ import ButtonGreen from '@/components/Buttons/ButtonGreen';
 import CommentOnboarding from '@/components/Onboarding/CommentOnboarding';
 import PatternedBackground from '@/components/Onboarding/PatternedBackground';
 
+import { getUserCourseAndGroup } from '@/stores/db/init';
+
 import { onboarding } from '@/constants/Colors';
 import { onboardingText } from "@/language/ru"
-
-import { getUsers, addUser, clearUsersTableAndResetId } from '@/stores/db/init';
 
 const OnboardingHello = () => {
   const routs = useRouter();
@@ -20,23 +20,18 @@ const OnboardingHello = () => {
   } = onboardingText;
 
   const fnOnClick = useCallback(() => {
-    clearUsersTableAndResetId();
     routs.navigate("/onboarding-course")
   }, [routs]);
 
-  const group = "afaf";
-  const course = "dasasdasd"
-
-
-  const getUser: any = async () => {
-    await addUser(group, course);
-    await getUsers()
-  };
-
   useEffect(() => {
-    getUser();
-
-  }, [group, course])
+    const fnCall = async () => {
+      const result = await getUserCourseAndGroup();
+      if (result) {
+        routs.navigate("/(main)");
+      }
+    }
+    fnCall();
+  }, [])
 
   return (
     <PatternedBackground>

@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 import ButtonGreen from "@/components/Buttons/ButtonGreen";
@@ -8,30 +8,64 @@ import ButtonText from "@/components/Buttons/ButtonText";
 import CommentComponent from "@/components/Onboarding/CommentOnboarding";
 import PatternedBackground from "@/components/Onboarding/PatternedBackground";
 
+import { addUserGroup, getUserCourse, getUserGroup } from "@/stores/db/init";
+
 import { onboarding } from "@/constants/Colors";
-import { groupFistName, groupFispName, onboardingText, textButton } from "@/language/ru";
+import {
+  groupFistName,
+  groupFispName,
+  onboardingText,
+  textButton,
+  courseName
+} from "@/language/ru";
 
 const OnboardingGroup = () => {
   const { groupTextOne } = onboardingText; 
   const { next, back } = textButton;
+  const { fist, fisp } = courseName;
   const {
     buttonGreenBackground,
     buttonGreenText,
     buttonSelectionText,
     buttonSelectionBackground,
   } = onboarding;
-  
-  const groups = Object.values(groupFistName);
 
   const routs = useRouter();
+  const [groups, setGroups] = useState<string[]>([]);
   const [activeButton, setActiveButton] = useState<null | string>(null)
+
+  const course = async () => {
+    try {
+      const result = await getUserCourse();
+      const groupFist = Object.values(groupFistName)
+      const groupFisp = Object.values(groupFispName)
+
+      if (fist === result) {
+        setGroups(groupFist);
+      }
+
+      if (fisp === result) {
+        setGroups(groupFisp);
+      }
+
+    } catch (e) {
+      console.warn(e);
+    }
+  };
+
   
   const fnOnCLickNext = useCallback(() => routs.navigate("/onboarding-finish"), [routs]);
   const fnOnCLickBack = useCallback(() => routs.back(), [routs]);
-
-  const fnSetActiveButton = (index: number) => {
+  
+  const fnSetActiveButton = async (index: number) => {
     setActiveButton(groups[index]);
+    await addUserGroup(groups[index]);
+    await getUserGroup();
   }
+
+  useEffect(() => {
+    course();
+  }, [])
 
   return (
       <PatternedBackground>

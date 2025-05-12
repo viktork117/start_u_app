@@ -1,13 +1,11 @@
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 // import * as SplashScreen from 'expo-splash-screen';
 import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 
-import { openDatabaseSync } from 'expo-sqlite';
-
-import { initializeDatabase, addUser } from '@/stores/db/init';
+import { getUserCourseAndGroup, initializeDatabase } from '@/stores/db/init';
 
 import 'react-native-reanimated';
 
@@ -24,6 +22,8 @@ export default function RootLayout() {
     NatoSans: require('../assets/fonts/NotoSans.ttf'),
   });
 
+  const [isFirstStart, setIsFirstStart] = useState(true);
+
   const fnInitDB = () => {
     try {
       initializeDatabase();
@@ -34,7 +34,16 @@ export default function RootLayout() {
 
   useEffect(() => {
     fnInitDB();
+    console.log("rerender")
   }, []);
+
+  useEffect(() => {
+    const fnCall = async () => {
+      const result = await getUserCourseAndGroup();
+      setIsFirstStart(!result);
+    }
+    fnCall();
+  }, [])
 
   if (!loaded) {
     // Async font loading only occurs in development.
@@ -46,7 +55,8 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorsTheme}>
       <Stack>
-        <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
+        { isFirstStart && <Stack.Screen name="(onboarding)" options={{ headerShown: false }} /> }
+        <Stack.Screen name="(main)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="light" />

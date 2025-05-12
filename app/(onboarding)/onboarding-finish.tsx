@@ -7,6 +7,7 @@ import PatternedBackground from "@/components/Onboarding/PatternedBackground";
 
 import { onboardingText, textButton } from "@/language/ru";
 import { onboarding } from "@/constants/Colors";
+import { useCallback } from "react";
 
 const OnboardingFinish = () => {
   const {
@@ -25,6 +26,9 @@ const OnboardingFinish = () => {
 
   const routs = useRouter();
 
+    const fnOnCLickNext = useCallback(() => routs.navigate("/(main)"), [routs]);
+    const fnOnCLickBack = useCallback(() => routs.back(), [routs]);
+
   return (
     <PatternedBackground>
       <CommentComponent 
@@ -33,13 +37,13 @@ const OnboardingFinish = () => {
       />
       <ButtonGreen
         text={next}
-        onClick={() => {}}
+        onClick={fnOnCLickNext}
         backgroundColor={buttonGreenBackground}
         textColor={buttonGreenText}
       />
       <ButtonText
         text={back}
-        onClick={() => routs.back()}
+        onClick={fnOnCLickBack}
         textColor={buttonSelectionText}
       />
     </PatternedBackground>

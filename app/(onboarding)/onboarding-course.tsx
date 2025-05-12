@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import ButtonGreen from '@/components/Buttons/ButtonGreen';
@@ -8,6 +8,8 @@ import ButtonText from '@/components/Buttons/ButtonText';
 import CommentOnboarding from '@/components/Onboarding/CommentOnboarding';
 import PatternedBackground from '@/components/Onboarding/PatternedBackground';
 import { onboarding } from '@/constants/Colors';
+
+import { getUserCourse, addUserCourse } from '@/stores/db/init';
 
 import { courseName, onboardingText, textButton } from "@/language/ru";
 
@@ -28,9 +30,25 @@ const {
   const fnOnCLickNext = useCallback(() => routs.navigate("/onboarding-group"), [routs]);
   const fnOnCLickBack = useCallback(() => routs.back(), [routs]);
 
+  const getUser: any = async (active: string) => {
+    await addUserCourse(active);
+  };
+
   const fnSetActiveButton = (active: string) => {
     setActiveButton(active);
+    getUser(active);
   }
+
+  const course = async () => {
+    const result = await getUserCourse();
+    if (!activeButton) {
+      setActiveButton(result);
+    }
+  };
+
+  useEffect(() => {
+    course();
+  }, [])
   
   return (
     <PatternedBackground>
