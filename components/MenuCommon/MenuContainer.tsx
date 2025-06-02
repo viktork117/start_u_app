@@ -1,10 +1,10 @@
-import {
+import React, {
   memo,
   useMemo,
   type FC,
   type ReactNode,
 } from "react";
-import { ColorValue, StyleSheet, useWindowDimensions, View } from "react-native";
+import { ColorValue, StyleSheet, useWindowDimensions } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import BottomTab from "../BottomTab";

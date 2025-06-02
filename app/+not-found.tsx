@@ -1,7 +1,7 @@
 import { useRouter } from 'expo-router';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import ImageOne from "../assets/images/not_found.png"
+import ImageOne from "../assets/images/not_found.png";
 
 export default function NotFoundScreen() {
   const router = useRouter();
@@ -11,7 +11,7 @@ export default function NotFoundScreen() {
       <Image 
         source={ImageOne}
         style={styles.image}
-        resizeMode="cover"
+        resizeMode="contain"
       />
       
       <Text style={styles.title}>Упс... Страница не найдена</Text>

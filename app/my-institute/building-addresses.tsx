@@ -33,7 +33,7 @@ const BuildingAddresses = () => {
           />
           <View style={{ rowGap: 10 }}>
             <View style={{ flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
-              <Image source={ImageOne} resizeMode='contain' style={{ height: 56 }} />
+              <Image source={ImageOne} resizeMode='contain' style={{ height: 56, width: 56 }} />
               <TextComponent
                 text="Ул. Артёма, 58"
                 variant="NS_R"
@@ -42,7 +42,7 @@ const BuildingAddresses = () => {
               />
             </View>
             <View style={{ flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
-              <Image source={ImageTwo} resizeMode='contain' style={{ height: 56 }} />
+              <Image source={ImageTwo} resizeMode='contain' style={{ height: 56, width: 56 }} />
               <TextComponent
                 text="Студгородк ул. Артёма, 58"
                 variant="NS_R"
@@ -51,7 +51,7 @@ const BuildingAddresses = () => {
               />
             </View>
             <View style={{ flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
-              <Image source={ImageThree} resizeMode='contain' style={{ height: 56 }} />
+              <Image source={ImageThree} resizeMode='contain' style={{ height: 56, width: 56 }} />
               <TextComponent
                 text="Ул. Кобозева, 17"
                 variant="NS_R"
@@ -60,7 +60,7 @@ const BuildingAddresses = () => {
               />
             </View>
             <View style={{ flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
-              <Image source={ImageFour} resizeMode='contain' style={{ height: 56 }} />
+              <Image source={ImageFour} resizeMode='contain' style={{ height: 56, width: 56 }} />
               <TextComponent
                 text="Ул. Кобозева, 15"
                 variant="NS_R"
@@ -69,7 +69,7 @@ const BuildingAddresses = () => {
               />
             </View>
             <View style={{ flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
-              <Image source={ImageFive} resizeMode='contain' style={{ height: 56 }} />
+              <Image source={ImageFive} resizeMode='contain' style={{ height: 56, width: 56 }} />
               <TextComponent
                 text="Пр-т Дзержинского, 1"
                 variant="NS_R"
@@ -78,7 +78,7 @@ const BuildingAddresses = () => {
               />
             </View>
             <View style={{ flexDirection: "row", justifyContent: "flex-start", alignItems: "center", width: "70%" }}>
-              <Image source={ImageSix} resizeMode='contain' style={{ height: 56 }} />
+              <Image source={ImageSix} resizeMode='contain' style={{ height: 56, width: 56 }} />
               <TextComponent
                 text={`Студгородок \nпр-т Богдана Хмельницкого, 106`}
                 variant="NS_R"
@@ -87,7 +87,7 @@ const BuildingAddresses = () => {
               />
             </View>
             <View style={{ flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
-              <Image source={ImageSeven} resizeMode='contain' style={{ height: 56 }} />
+              <Image source={ImageSeven} resizeMode='contain' style={{ height: 56, width: 56 }} />
               <TextComponent
                 text="Пр-т 25-летия РККА, 1"
                 variant="NS_R"
@@ -96,7 +96,7 @@ const BuildingAddresses = () => {
               />
             </View>
             <View style={{ flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
-              <Image source={ImageTwelve} resizeMode='contain' style={{ height: 56 }} />
+              <Image source={ImageTwelve} resizeMode='contain' style={{ height: 56, width: 56 }} />
               <TextComponent
                 text="ул. Артёма, 50"
                 variant="NS_R"
@@ -105,7 +105,7 @@ const BuildingAddresses = () => {
               />
             </View>
             <View style={{ flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
-              <Image source={ImageTen} resizeMode='contain' style={{ height: 56 }} />
+              <Image source={ImageTen} resizeMode='contain' style={{ height: 56, width: 56 }} />
               <TextComponent
                 text="Студгородок ул. Артёма, 131"
                 variant="NS_R"
@@ -114,7 +114,7 @@ const BuildingAddresses = () => {
               />
             </View>
             <View style={{ flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
-              <Image source={ImageEleven} resizeMode='contain' style={{ height: 56 }} />
+              <Image source={ImageEleven} resizeMode='contain' style={{ height: 56, width: 56 }} />
               <TextComponent
                 text="Ул. Розы Люксембург, 34А"
                 variant="NS_R"
@@ -124,7 +124,7 @@ const BuildingAddresses = () => {
             </View>
           </View>
         </View>
-        <View style={{ height: 100 }} />
+        <View style={{ height: 300 }} />
       </ScrollView>
       <BottomTab absolute />
     </SafeAreaView>

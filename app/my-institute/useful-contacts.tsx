@@ -1,6 +1,7 @@
-import React from 'react';
-import { Image, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useCallback } from 'react';
+import { Image, Linking, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { useRouter } from 'expo-router';
 
 import Header from '@/components/Header';
 import BaseButtonUI from '@/components/ui/BaseButtonUI';
@@ -11,6 +12,7 @@ import ImageOne from "../../assets/images/icons/Group 155.png";
 import ImageTwo from "../../assets/images/icons/Group 156.png";
 
 const UsefulContacts = () => {
+  const router = useRouter(); 
   const handleEmailPress = (email: string) => {
     Linking.openURL(`mailto:${email}`);
   };
@@ -26,6 +28,8 @@ const UsefulContacts = () => {
   const cleanPhoneNumber = (number: any) => {
     return number.replace(/[^\d+]/g, '');
   };
+
+  const onClick = useCallback(() => router.push("/my-institute/building-addresses"), [router])
 
   return (
     <>
@@ -53,7 +57,7 @@ const UsefulContacts = () => {
               color="#2D2D2D"
             />
           </View>
-          <BaseButtonUI onPress={() => {}} style={{height: 56, borderWidth: 4, borderColor: "#047F8E" }}>
+          <BaseButtonUI onPress={onClick} style={{height: 56, borderWidth: 4, borderColor: "#047F8E" }}>
             <TextComponent
               text="Адреса всех корпусов"
               variant="NS_SB"
@@ -107,7 +111,7 @@ const UsefulContacts = () => {
               onPress={() => handleLinkPress('https://donntu.info/')}
               style={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
               <View style={{ flexDirection: "row", alignItems: "center"}}>
-                <Image source={ImageOne} resizeMode='contain' style={{ height: 36 }} />
+                <Image source={ImageOne} resizeMode='contain' style={{ height: 36, width: 76  }} />
                 <TextComponent
                   text="donntu.info@mail.ru"
                   variant="NS_SB"
@@ -128,7 +132,7 @@ const UsefulContacts = () => {
               onPress={() => handleEmailPress('doverie@donntu.ru')}
               style={{ justifyContent: "flex-start", alignItems: "flex-start" }}>
               <View style={{ flexDirection: "row", alignItems: "center"}}>
-                <Image source={ImageTwo} resizeMode='contain' style={{ height: 36 }} />
+                <Image source={ImageTwo} resizeMode='contain' style={{ height: 36, width: 76  }} />
                 <TextComponent
                   text="doverie@donntu.ru"
                   variant="NS_SB"
