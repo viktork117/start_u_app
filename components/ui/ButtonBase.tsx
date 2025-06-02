@@ -39,6 +39,7 @@ const fnGetStyles = (
     alignItems: "center",
     borderRadius: 10,
     opacity: disabled ? 0.2 : 1,
+    backgroundColor: "transparent",
   }
 })
 

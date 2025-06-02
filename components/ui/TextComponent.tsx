@@ -23,7 +23,9 @@ const TextComponent: FC<TextComponentProps> = ({
   text,
   variantSize = "B",
   variant = "NS_R",
-  color = "#FFFFFF"
+  color = "#FFFFFF",
+  weight,
+  align,
 }) => {
   const { size, lineHeight } = useMemo(() => {
     const size = fontSize[variantSize];
@@ -31,38 +33,49 @@ const TextComponent: FC<TextComponentProps> = ({
       size: size,
       lineHeight: size + (size / 100 * 21)
     }
-  }, [variantSize]);  
+  }, [variantSize]);
+
+  const styles = useMemo(() => createStyles(weight), [weight]);
 
   return(
-    <Text style={[
-      styles[variant],
-      {
-        fontSize: size,
-        lineHeight: lineHeight,
-        color: color
-      }
-    ]}>
+    <Text
+      style={[
+        {
+          fontSize: size,
+          lineHeight: lineHeight,
+          color: color,
+          wordWrap: "break-word",
+          textAlign: align,
+        },
+        styles[variant]
+      ]}>
       {text}
     </Text>
   )
 };
 
-const styles = StyleSheet.create({
-  NS_R: {
-    fontFamily: "NatoSans",
-    fontWeight: 400,
-    letterSpacing: 0,
-  },  
-  NS_SB: {
-    fontFamily: "NatoSans",
-    fontWeight: 600,
-    letterSpacing: 0,
-  },
-  SO: {
-    fontFamily: "SeymourOne",
-    fontWeight: 400,
-    letterSpacing: 0,
-  }
+const createStyles = (weight: any | undefined) =>
+  StyleSheet.create({
+    NS_L: {
+      fontFamily: "NatoSans",
+      fontWeight: weight ?? 300,
+      letterSpacing: 0,
+    },
+    NS_R: {
+      fontFamily: "NatoSans",
+      fontWeight: weight ?? 400,
+      letterSpacing: 0,
+    },
+    NS_SB: {
+      fontFamily: "NatoSans",
+      fontWeight: weight ?? 600,
+      letterSpacing: 0,
+    },
+    SO: {
+      fontFamily: "SeymourOne",
+      fontWeight: weight ?? 400,
+      letterSpacing: 0,
+    }
 })
 
 export default memo(TextComponent);

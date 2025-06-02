@@ -16,7 +16,7 @@ import { type ButtonGreenProps } from "./";
 const ButtonGreen: FC<ButtonGreenProps> = ({
   text,
   onClick,
-  backgroundColor,
+  backgroundColor = "#047F8E",
   textColor,
   disabled = false
 }) => {

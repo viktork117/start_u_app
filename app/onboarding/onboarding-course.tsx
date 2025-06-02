@@ -27,7 +27,7 @@ const {
   const routs = useRouter();
   const [activeButton, setActiveButton] = useState<string | null>(null);
 
-  const fnOnCLickNext = useCallback(() => routs.navigate("/onboarding-group"), [routs]);
+  const fnOnCLickNext = useCallback(() => routs.navigate("/onboarding/onboarding-group"), [routs]);
   const fnOnCLickBack = useCallback(() => routs.back(), [routs]);
 
   const getUser: any = async (active: string) => {

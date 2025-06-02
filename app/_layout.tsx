@@ -7,12 +7,14 @@ import { StatusBar } from 'expo-status-bar';
 
 import { getUserCourseAndGroup, initializeDatabase } from '@/stores/db/init';
 
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import 'react-native-reanimated';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // SplashScreen.preventAutoHideAsync();
 
 // SplashScreen.setOptions({
-//   duration: 2000,
+//   duration: 500,
 //   fade: true,
 // })
 
@@ -34,7 +36,7 @@ export default function RootLayout() {
 
   useEffect(() => {
     fnInitDB();
-    console.log("rerender")
+    console.log("rerender", isFirstStart)
   }, []);
 
   useEffect(() => {
@@ -54,12 +56,18 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorsTheme}>
-      <Stack>
-        { isFirstStart && <Stack.Screen name="(onboarding)" options={{ headerShown: false }} /> }
-        <Stack.Screen name="(main)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" options={{ headerShown: false }} />
-      </Stack>
-      <StatusBar style="light" />
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <SafeAreaProvider>
+          <Stack>
+            <Stack.Screen name="index" options={{ headerShown: false }} />
+            <Stack.Screen name="onboarding" options={{ headerShown: false }} /> 
+            <Stack.Screen name="anti-stress" options={{ headerShown: false }} />
+            <Stack.Screen name="my-institute" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" options={{ headerShown: false }} />
+          </Stack>
+        </SafeAreaProvider>
+      </GestureHandlerRootView>
+      <StatusBar style="dark" />
     </ThemeProvider>
   );
 }

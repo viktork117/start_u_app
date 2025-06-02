@@ -37,6 +37,7 @@ const OnboardingGroup = () => {
   const course = async () => {
     try {
       const result = await getUserCourse();
+      const resultGroup = await getUserGroup();
       const groupFist = Object.values(groupFistName)
       const groupFisp = Object.values(groupFispName)
 
@@ -48,19 +49,19 @@ const OnboardingGroup = () => {
         setGroups(groupFisp);
       }
 
+      setActiveButton(resultGroup);
     } catch (e) {
       console.warn(e);
     }
   };
 
   
-  const fnOnCLickNext = useCallback(() => routs.navigate("/onboarding-finish"), [routs]);
+  const fnOnCLickNext = useCallback(() => routs.navigate("/onboarding/onboarding-finish"), [routs]);
   const fnOnCLickBack = useCallback(() => routs.back(), [routs]);
   
   const fnSetActiveButton = async (index: number) => {
     setActiveButton(groups[index]);
     await addUserGroup(groups[index]);
-    await getUserGroup();
   }
 
   useEffect(() => {

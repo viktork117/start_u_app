@@ -25,8 +25,7 @@ const OnboardingFinish = () => {
   } = onboarding;
 
   const routs = useRouter();
-
-    const fnOnCLickNext = useCallback(() => routs.navigate("/(main)"), [routs]);
+    const fnOnCLickNext = useCallback(() => routs.navigate("/"), [routs]);
     const fnOnCLickBack = useCallback(() => routs.back(), [routs]);
 
   return (

@@ -4,17 +4,17 @@ type ButtonsBase = {
   text: string;
   onClick: () => void;
   disabled?: boolean;
-  textColor: ColorValue;
+  textColor?: ColorValue;
 }
 
 export type ButtonGreenProps = ButtonsBase & {
-  backgroundColor: ColorValue;
+  backgroundColor?: ColorValue;
 }
 
 export type ButtonSelectionsProps = ButtonsBase & {
   height?: number;
   activeButton?: boolean;
-  backgroundColor: ColorValue;
+  backgroundColor?: ColorValue;
 }
 
 export type ButtonTextProps = ButtonsBase;
