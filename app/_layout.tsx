@@ -1,30 +1,31 @@
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import { useEffect, useState } from 'react';
-// import * as SplashScreen from 'expo-splash-screen';
+import * as SplashScreen from 'expo-splash-screen';
 import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 
-import { getUserCourseAndGroup, initializeDatabase } from '@/stores/db/init';
+import { initializeDatabase } from '@/stores/db/init';
 
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import 'react-native-reanimated';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-// SplashScreen.preventAutoHideAsync();
+if (!__DEV__) {
+  SplashScreen.preventAutoHideAsync();
+  
+  SplashScreen.setOptions({
+    duration: 500,
+    fade: true,
+  })
+}
 
-// SplashScreen.setOptions({
-//   duration: 500,
-//   fade: true,
-// })
 
 export default function RootLayout() {
   const [loaded] = useFonts({
     SeymourOne: require('../assets/fonts/SeymourOne-Regular.ttf'),
     NatoSans: require('../assets/fonts/NotoSans.ttf'),
   });
-
-  const [isFirstStart, setIsFirstStart] = useState(true);
 
   const fnInitDB = () => {
     try {
@@ -36,16 +37,7 @@ export default function RootLayout() {
 
   useEffect(() => {
     fnInitDB();
-    console.log("rerender", isFirstStart)
   }, []);
-
-  useEffect(() => {
-    const fnCall = async () => {
-      const result = await getUserCourseAndGroup();
-      setIsFirstStart(!result);
-    }
-    fnCall();
-  }, [])
 
   if (!loaded) {
     // Async font loading only occurs in development.
