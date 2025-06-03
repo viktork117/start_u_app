@@ -1,58 +1,65 @@
+import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
-import { useEffect, useState } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
-import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
+import { useEffect, useState } from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { initializeDatabase } from '@/stores/db/init';
-
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import 'react-native-reanimated';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 if (!__DEV__) {
   SplashScreen.preventAutoHideAsync();
-  
   SplashScreen.setOptions({
     duration: 500,
     fade: true,
-  })
+  });
 }
 
-
 export default function RootLayout() {
+  const [isReady, setIsReady] = useState(false);
   const [loaded] = useFonts({
     SeymourOne: require('../assets/fonts/SeymourOne-Regular.ttf'),
     NatoSans: require('../assets/fonts/NotoSans.ttf'),
   });
 
-  const fnInitDB = () => {
+  const fnInitDB = async (): Promise<void> => {
     try {
-      initializeDatabase();
+      await initializeDatabase();
     } catch (e) {
-      console.warn(e);
+      console.error('Database initialization failed:', e);
+      throw e;
     }
-  }
+  };
 
   useEffect(() => {
-    fnInitDB();
+    async function prepare() {
+      try {
+        await fnInitDB();
+        if (!__DEV__) {
+          await SplashScreen.hideAsync();
+        }
+      } catch (e) {
+        console.warn('Error during app initialization:', e);
+      } finally {
+        setIsReady(true);
+      }
+    }
+
+    prepare();
   }, []);
 
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
-  }
-
-  const colorsTheme = DefaultTheme;
+  if (!loaded || !isReady) return null;
 
   return (
-    <ThemeProvider value={colorsTheme}>
+    <ThemeProvider value={DefaultTheme}>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <SafeAreaProvider>
           <Stack>
             <Stack.Screen name="index" options={{ headerShown: false }} />
-            <Stack.Screen name="onboarding" options={{ headerShown: false }} /> 
+            <Stack.Screen name="onboarding" options={{ headerShown: false }} />
             <Stack.Screen name="anti-stress" options={{ headerShown: false }} />
             <Stack.Screen name="my-institute" options={{ headerShown: false }} />
             <Stack.Screen name="+not-found" options={{ headerShown: false }} />
