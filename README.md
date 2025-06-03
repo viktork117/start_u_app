@@ -1,50 +1,102 @@
-# Welcome to your Expo app 👋
+# My Expo App - Образовательная платформа
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Мобильное приложение на React Native (Expo), предоставляющее образовательные и антистресс функции для студентов.
 
-## Get started
+## Основные модули
 
-1. Install dependencies
+- **Антистресс**: Включает техники заземления, дыхательные практики и методы остановки тревожных состояний
+- **Личный кабинет**: Управление профилем и персональными настройками
+- **Мой институт**: Интеграция с образовательным учреждением
+- **PRO обучение**: Расширенные образовательные возможности
+- **Онбординг**: Вводный тур по приложению
 
-   ```bash
-   npm install
-   ```
+## Технологический стек
 
-2. Start the app
+### Основа
+- React Native (0.79.2)
+- Expo SDK (53.0.7)
+- TypeScript (5.8.3)
+- Expo Router (5.0.5)
 
-   ```bash
-   npx expo start
-   ```
+### Состояние и данные
+- Zustand (5.0.4) для управления состоянием
+- Expo SQLite (15.2.9) для локального хранения
+- AsyncStorage для кеширования
 
-In the output, you'll find options to open the app in a
+### UI и навигация
+- React Navigation 7
+  - Bottom Tabs (7.3.10)
+  - Elements (2.3.8)
+- React Native Reanimated (3.17.4)
+- React Native SVG (15.11.2)
+- React Native Safe Area Context (5.4.0)
+- Bottom Sheet (@gorhom/bottom-sheet 5.1.4)
+- React Native Calendars (1.1312.0)
+- Expo Blur (14.1.4)
+- Expo Image (2.1.6)
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### Дополнительные возможности
+- Expo WebView (13.13.5)
+- Expo Haptics (14.1.4)
+- Expo Constants (17.1.5)
+- Markdown Display (7.0.2)
+- Moment.js (2.30.1)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Инструментарий
+- ESLint (9.25.0)
+- TypeScript (5.8.3)
+- Expo Dev Client (5.1.8)
+- Expo Splash Screen (0.30.8)
+- Expo Updates для OTA обновлений
 
-## Get a fresh project
-
-When you're ready, run:
+## Скрипты
 
 ```bash
-npm run reset-project
+# Запуск проекта
+npm start              # Стандартный запуск
+npm run start-c        # Запуск с очисткой кеша
+
+# Сборка и запуск
+npm run android        # Запуск на Android
+npm run ios           # Запуск на iOS
+npm run web           # Запуск веб-версии
+
+# Разработка
+npm run lint          # Проверка кода
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Структура проекта
 
-## Learn more
+```
+app/
+├── anti-stress/     # Антистресс модуль
+├── be-own/          # Личный кабинет
+├── my-institute/    # Модуль института
+├── onboarding/      # Онбординг
+└── pro-studies/     # PRO обучение
 
-To learn more about developing your project with Expo, look at the following resources:
+components/          # Переиспользуемые компоненты
+├── AntiStress/
+├── BottomTab/
+├── Buttons/
+└── ...
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+stores/             # Zustand сторы
+language/           # Локализация
+constants/          # Константы
+utils/              # Утилиты
+```
 
-## Join the community
+## Требования
 
-Join our community of developers creating universal apps.
+- Node.js 18+
+- Expo CLI
+- Android Studio (для Android разработки)
+- Xcode (для iOS разработки, только macOS)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Разработка
+
+Проект использует:
+- ESLint для линтинга
+- TypeScript для типизации
+- File-based routing от Expo Router
