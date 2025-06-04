@@ -1,18 +1,37 @@
 import React, { memo, useMemo, useRef, type FC } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, useWindowDimensions, View } from "react-native";
+import { Calendar, CalendarProps, LocaleConfig } from "react-native-calendars";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Calendar, LocaleConfig } from "react-native-calendars";
 
-import DateDisplay from "../DateDisplay";
 import BottomTab from "../BottomTab";
+import DateDisplay from "../DateDisplay";
+import Header from "../Header";
 import BottomSheetBase from "../ui/BottomSheetBase";
 
 import { main } from "@/constants/Colors";
 
-import { type MainContainerProps } from "./";
 import { type MainColorsType } from "@/constants";
 import type BottomSheet from "@gorhom/bottom-sheet";
-import Header from "../Header";
+import { type MainContainerProps } from "./";
+
+LocaleConfig.defaultLocale = 'ru';
+
+type BottomSheetCalendarProps = {
+  calendarProps: CalendarProps;
+  sheetRef: React.RefObject<BottomSheet | null>;
+}
+
+const BottomSheetCalendar: FC<BottomSheetCalendarProps> =
+  ({calendarProps, sheetRef}) => (
+    <BottomSheetBase sheetRef={sheetRef}>
+      <Calendar
+          key={`${Object.keys(calendarProps).join("-")}`}
+          {...calendarProps}
+        />
+    </BottomSheetBase>
+  );
+
+const MBottomSheetCalendar = memo(BottomSheetCalendar);
 
 const MainContainer: FC<MainContainerProps> = ({
   safeAreaStyle,
@@ -20,13 +39,28 @@ const MainContainer: FC<MainContainerProps> = ({
   isHeaderView = false,
   children,
 }) => {
-  const styles = useMemo(() => fnStyles(main), []);
   const sheetRef = useRef<BottomSheet>(null);
+  const styles = useMemo(() => fnStyles(main), []);
 
-  LocaleConfig.defaultLocale = 'ru';
+  const { height } = useWindowDimensions();
+  const sizePaddingBottom = useMemo(
+    () => height / 100 * 10,
+    [height]
+  );
+  
+  const safeAreaStyles = useMemo(() =>
+    [styles.safeAreaDefault, safeAreaStyle],
+    [styles.safeAreaDefault, safeAreaStyle]
+  );
+
+  const calendarProps = useMemo(() => ({
+    firstDay: 1,
+    enableSwipeMonths: true,
+    showSixWeeks: true,
+  }), []);
 
   return (
-    <SafeAreaView style={[ styles.safeAreaDefault, safeAreaStyle ]}>
+    <SafeAreaView style={safeAreaStyles}>
       {isHeaderView && <Header />}
       {isDataDisplayView && (
         <DateDisplay
@@ -35,14 +69,12 @@ const MainContainer: FC<MainContainerProps> = ({
         />
       )}
       {children}
-      <BottomTab absolute={isHeaderView} />
-      <BottomSheetBase sheetRef={sheetRef}>
-        <Calendar
-          firstDay={1}
-          enableSwipeMonths={true}
-          showSixWeeks={true}
-        />
-      </BottomSheetBase>
+      <View style={{ height: sizePaddingBottom }} />
+      <BottomTab absolute />
+      <MBottomSheetCalendar
+        calendarProps={calendarProps}
+        sheetRef={sheetRef}
+      />
     </SafeAreaView>
   );
 }

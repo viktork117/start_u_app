@@ -15,8 +15,10 @@ const DateDisplay = ({
   mgTop
 }: any) => {
   const { height } = useWindowDimensions();
-
+  
   const date = useMemo(() => new Date(), []);
+
+  const mgTopConst = useMemo(() => height / 100 * 8.69, [height]);
 
   const weekNumber = useMemo(
     () => moment(date).isoWeek(),
@@ -31,8 +33,8 @@ const DateDisplay = ({
     [weekNumber]
   );
   const styles = useMemo(
-    () => fnGetStyles(main, height, mgTop),
-    [height, mgTop]
+    () => fnGetStyles(main, mgTopConst, mgTop),
+    [mgTopConst, mgTop]
   );
 
   return (
@@ -59,7 +61,7 @@ const DateDisplay = ({
 
 const fnGetStyles = (
   colors: MainColorsType,
-  height: number,
+  mgTopConst: number,
   mgTop?: number
 ) => 
   StyleSheet.create({
@@ -72,7 +74,7 @@ const fnGetStyles = (
       borderRadius: 10,
       borderWidth: 4,
       borderColor: colors.border,
-      marginTop: mgTop ?? height / 100 * 8.69,
+      marginTop: mgTop ?? mgTopConst,
       marginHorizontal: 16,
     }
 });

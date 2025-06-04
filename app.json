@@ -14,7 +14,9 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/iconApp/IconApp.png",
-        "backgroundColor": "#ADD3DE"
+        "backgroundColor": "#ADD3DE",
+        "foregroundImageWidth": 108,
+        "backgroundImageWidth": 108
       },
       "edgeToEdgeEnabled": true,
       "package": "com.viktor_k1001.my_expo_app",

@@ -1,38 +1,36 @@
-
-import React, { 
+import React, {
   useCallback,
-  useMemo,
   useEffect,
+  useMemo,
   useState
 } from 'react';
 
+import { Redirect, useRouter } from 'expo-router';
 import {
+  ActivityIndicator,
+  StyleSheet,
   useWindowDimensions,
   View,
-  StyleSheet,
-  ActivityIndicator,
 } from "react-native";
-import { useRouter, Redirect } from 'expo-router';
 
-import { getUserCourseAndGroup } from "@/stores/db/init";
+import { useUserData } from "@/stores/useUserData";
 
-import PatternedBackground from "@/components/Onboarding/PatternedBackground";
-import MainContainer from '@/components/Main/MainContainer';
 import ButtonNavigation from '@/components/Main/ButtonNavigation';
+import MainContainer from '@/components/Main/MainContainer';
+import PatternedBackground from "@/components/Onboarding/PatternedBackground";
 
 import { mainText } from '@/language/ru';
 
-import IconMyInstitute from "../assets/images/icons/Group 78.png"
-import IconPROStudies from "../assets/images/icons/Group 20.png"
-import IconBeOwn from "../assets/images/icons/Group 67.png"
-import IconAntiStress from "../assets/images/icons/Group 120.png"
-
-let IS_FIRST_START_GLOBAL: boolean = true;
+import IconAntiStress from "../assets/images/icons/Group 120.png";
+import IconPROStudies from "../assets/images/icons/Group 20.png";
+import IconBeOwn from "../assets/images/icons/Group 67.png";
+import IconMyInstitute from "../assets/images/icons/Group 78.png";
 
 const MainApp = () => {
   const routs = useRouter();
-
-  const [isFirstStart, setFirstStart] = useState<boolean | null>(null);
+  const { isDataComplete, loadUserData } = useUserData();
+  const [isLoading, setIsLoading] = useState(true);
+  
   const { height } = useWindowDimensions();
   const {
     myUniver,
@@ -60,30 +58,23 @@ const MainApp = () => {
   ];
   
   useEffect(() => {
-    const fnCall = async () => {
-      const result = await getUserCourseAndGroup();
-      if (result) {
-        IS_FIRST_START_GLOBAL = !result;
-      }
-      setFirstStart(!result);
-    }
+    const init = async () => {
+      await loadUserData();
+      setIsLoading(false);
+    };
 
-    fnCall();
-  }, []);
+    init();
+  }, [loadUserData]);
 
-  if (isFirstStart === null && IS_FIRST_START_GLOBAL) return (
+  if (isLoading && !isDataComplete) return (
     <PatternedBackground>
       <ActivityIndicator size="large" color="#000000" />
     </PatternedBackground>
   );
 
-  if (isFirstStart) return (
+  if (!isDataComplete) return (
     <Redirect href="/onboarding" />
   )
-
-  // if (__DEV__) return (
-  //   <Redirect href="/my-institute/building-addresses" />
-  // );
 
   return (
     <MainContainer>
