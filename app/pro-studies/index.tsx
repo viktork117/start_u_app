@@ -5,15 +5,15 @@ import { StyleSheet, View, type DimensionValue } from "react-native";
 import BottomTab from "@/components/BottomTab";
 import MenuItemButton from "@/components/MyInstitute/MenuItemButton";
 
-import ImageOne from "../../assets/images/icons/Frame 26.png";
-import ImageTwo from "../../assets/images/icons/Frame 26_1.png";
-import ImageThree from "../../assets/images/icons/Frame 26_2.png";
+import ImageOne from "../../assets/images/icons/Group 174.png";
+import ImageTwo from "../../assets/images/icons/Frame 26.png";
+import ImageThree from "../../assets/images/icons/Group 176.png";
 import TextComponent from "@/components/ui/TextComponent";
 
 const ROUTES = {
-  TIMETABLE: "/my-institute/timetable" as const,
-  USEFUL_CONTACTS: "/my-institute/useful-contacts" as const,
-  BUILDING_ADDRESSES: "/my-institute/building-addresses" as const,
+  TIMETABLE: "/pro-studies" as const,
+  USEFUL_CONTACTS: "/pro-studies" as const,
+  BUILDING_ADDRESSES: "/pro-studies" as const,
 };
 
 interface PageConstants {
@@ -48,13 +48,13 @@ const PAGE_CONSTANTS: PageConstants = {
   },
 };
 
-const MyInstituteMenu: FC = () => {
+const ProStudiesMenu: FC = () => {
   const router = useRouter();
 
   const texts = {
-    timetable: "Мое расписание",
-    contacts: "Полезные контакты",
-    addresses: "Адреса корпусов",
+    timetable: "Нейросети",
+    contacts: "Планирование",
+    addresses: "Чек-лист адаптации",
   };
 
   const onNavigateToTimetable = useCallback(() => router.push(ROUTES.TIMETABLE), [router]);
@@ -64,7 +64,7 @@ const MyInstituteMenu: FC = () => {
   return (
     <View style={styles.container}>
       <View style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }}>
-        <TextComponent text="Мой универ" color={"#000000"} align="center" variantSize="L" />
+        <TextComponent text="PRO учебу" color={"#000000"} align="center" variantSize="L" />
       </View>
       <MenuItemButton
         imageSource={ImageOne}
@@ -90,8 +90,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "flex-start",
-    rowGap: PAGE_CONSTANTS.SIZES.CONTAINER.ROW_GAP,
     alignItems: "flex-start",
+    rowGap: PAGE_CONSTANTS.SIZES.CONTAINER.ROW_GAP,
     paddingTop: PAGE_CONSTANTS.SIZES.CONTAINER.PADDING_TOP,
   },
   buttonContainer: {
@@ -105,4 +105,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(MyInstituteMenu);
+export default memo(ProStudiesMenu);

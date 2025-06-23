@@ -38,6 +38,7 @@ const MainContainer: FC<MainContainerProps> = ({
   isDataDisplayView = true,
   isHeaderView = false,
   children,
+  isMain,
 }) => {
   const sheetRef = useRef<BottomSheet>(null);
   const styles = useMemo(() => fnStyles(main), []);
@@ -70,7 +71,7 @@ const MainContainer: FC<MainContainerProps> = ({
       )}
       {children}
       <View style={{ height: sizePaddingBottom }} />
-      <BottomTab absolute />
+      <BottomTab absolute isMain={isMain} />
       <MBottomSheetCalendar
         calendarProps={calendarProps}
         sheetRef={sheetRef}

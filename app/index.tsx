@@ -45,9 +45,9 @@ const MainApp = () => {
   );
 
   //TODO: изменить после создания этих страниц
-  const onClickMyInstitute = useCallback(() => routs.navigate("/my-institute"), [routs]);
-  const onClickProStudy = useCallback(() => routs.navigate("/"), [routs])
-  const onClickBeOwn = useCallback(() => routs.navigate("/"), [routs])
+  const onClickMyInstitute = useCallback(() => routs.push("/my-institute"), [routs]);
+  const onClickProStudy = useCallback(() => routs.push("/pro-studies"), [routs])
+  const onClickBeOwn = useCallback(() => routs.push("/"), [routs])
   const onClickAntiStress = useCallback(() => routs.push("/anti-stress"), [routs])
 
   const buttonProps = [

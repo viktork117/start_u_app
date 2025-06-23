@@ -1,17 +1,11 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import React, { memo, useCallback, useState } from "react";
-import { Platform, StyleSheet, Text, TouchableOpacity, UIManager, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming
 } from "react-native-reanimated";
-
-if (Platform.OS === 'android') {
-  if (UIManager.setLayoutAnimationEnabledExperimental) {
-    UIManager.setLayoutAnimationEnabledExperimental(true);
-  }
-}
 
 const ANIMATION_DURATION = 300;
 

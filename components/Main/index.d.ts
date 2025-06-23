@@ -8,5 +8,6 @@ export type MainContainerProps = {
   safeAreaStyle?: StyleProp<ViewStyle>;
   isDataDisplayView?: boolean;
   isHeaderView?: boolean;
+  isMain?: boolean;
   children: ReactNode[] | ReactNode;
 };

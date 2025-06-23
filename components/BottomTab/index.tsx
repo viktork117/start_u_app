@@ -1,6 +1,8 @@
+import { useNavigation, useRouter } from "expo-router";
 import {
   memo,
   useCallback,
+  useEffect,
   useMemo,
   type FC
 } from "react";
@@ -9,30 +11,29 @@ import {
   StyleSheet,
   type ColorValue,
 } from "react-native";
-import { useRouter } from "expo-router";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import ButtonBase from "../ui/ButtonBase";
 
 import { main } from "@/constants/Colors";
 
 import logo from "../../assets/images/icons/Vector109.png";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 type Props = {
   backgroundColor?: ColorValue,
   absolute?: boolean,
+  isMain?: boolean,
 }
 
 const BottomTab: FC<Props> = ({
   backgroundColor,
   absolute,
+  isMain
 }) => {
   const { buttonBottomTabBackground } = main;
 
   const routes = useRouter();
   const { bottom } = useSafeAreaInsets();
-
-  console.log(bottom)
 
   const styles = useMemo(
     () => fnGetStyles(buttonBottomTabBackground, absolute, bottom),
@@ -41,9 +42,10 @@ const BottomTab: FC<Props> = ({
 
   const fnBackMain = useCallback(
     () => {
+      if (isMain) return;
       routes.push("/");
     },
-    [routes]
+    [isMain, routes]
   );
 
   return (
