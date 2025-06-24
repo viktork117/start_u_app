@@ -11,7 +11,7 @@ const StopStart = () => {
   }, [routs])
 
   const go = useCallback(() => {
-    routs.push("/anti-stress/stop/game");
+    routs.push("/anti-stress/stop/game-one");
   }, [routs])
 
   return (

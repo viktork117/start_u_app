@@ -63,6 +63,7 @@ export default function RootLayout() {
             <Stack.Screen name="anti-stress" options={{ headerShown: false }} />
             <Stack.Screen name="my-institute" options={{ headerShown: false }} />
             <Stack.Screen name="pro-studies" options={{ headerShown: false }} />
+            <Stack.Screen name="be-own" options={{ headerShown: false }} />
             <Stack.Screen name="+not-found" options={{ headerShown: false }} />
           </Stack>
         </SafeAreaProvider>

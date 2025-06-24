@@ -32,6 +32,8 @@ export type TextComponentProps = {
   color?: ColorValue;
   weight?: TextStyle["fontWeight"];
   align?: TextStyle["textAlign"];
+  style?: StyleProp<TextStyle>;
+  children?: ReactNode | ReactNode[];
 };
 
 //ButtonBase

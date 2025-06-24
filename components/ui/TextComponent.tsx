@@ -26,6 +26,8 @@ const TextComponent: FC<TextComponentProps> = ({
   color = "#FFFFFF",
   weight,
   align,
+  style,
+  children,
 }) => {
   const { size, lineHeight } = useMemo(() => {
     const size = fontSize[variantSize];
@@ -47,9 +49,11 @@ const TextComponent: FC<TextComponentProps> = ({
           wordWrap: "break-word",
           textAlign: align,
         },
-        styles[variant]
+        styles[variant],
+        style
       ]}>
       {text}
+      {children}
     </Text>
   )
 };

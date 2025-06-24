@@ -4,17 +4,17 @@ import {
   type FC,
 } from "react";
 import {
-  View,
   Image,
   StyleSheet,
   useWindowDimensions,
+  View,
   type ImageSourcePropType,
 } from "react-native";
 
-import TextComponent from "../ui/TextComponent";
 import BaseButtonUI from "../ui/BaseButtonUI";
+import TextComponent from "../ui/TextComponent";
 
-import { main } from "@/constants/Colors"; 
+import { main } from "@/constants/Colors";
 
 import { type MainColorsType } from "@/constants";
 

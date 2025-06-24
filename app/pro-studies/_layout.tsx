@@ -7,6 +7,8 @@ const ProStudies = () => {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="neural" options={{ headerShown: false }} />
+        <Stack.Screen name="planning" options={{ headerShown: false }} />
       </Stack>
     </GestureHandlerRootView>
   );

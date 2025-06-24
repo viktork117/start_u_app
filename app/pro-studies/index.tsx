@@ -11,9 +11,9 @@ import ImageThree from "../../assets/images/icons/Group 176.png";
 import TextComponent from "@/components/ui/TextComponent";
 
 const ROUTES = {
-  TIMETABLE: "/pro-studies" as const,
-  USEFUL_CONTACTS: "/pro-studies" as const,
-  BUILDING_ADDRESSES: "/pro-studies" as const,
+  TIMETABLE: "/pro-studies/neural" as const,
+  USEFUL_CONTACTS: "/pro-studies/planning" as const,
+  BUILDING_ADDRESSES: "/+not-found" as const,
 };
 
 interface PageConstants {

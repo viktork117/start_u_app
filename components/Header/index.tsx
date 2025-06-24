@@ -15,17 +15,21 @@ type Props = {
   cHeight?: number;
   onBack?: () => void;
   bgColor?: ColorValue;
+  paddingHorizontal?: number; 
 }
 
 const Header: FC<Props> = ({
   cHeight,
   onBack,
   bgColor = "#F3F7F8",
+  paddingHorizontal = 16,
 }) => {
   const routs = useRouter();
   const { height } = useWindowDimensions();
 
-  const styles = useMemo(() => createStyles(height, bgColor, cHeight), [cHeight, height, bgColor]);
+  const styles = useMemo(() =>
+    createStyles(height, bgColor, paddingHorizontal, cHeight),
+  [cHeight, height, bgColor, paddingHorizontal]);
 
   const onClickBack = useCallback(() => {
     if (onBack) return onBack();
@@ -49,13 +53,14 @@ const Header: FC<Props> = ({
 const createStyles = (
   height: number,
   bgColor: ColorValue,
+  paddingHorizontal: number,
   cHeight?: number,
 ) =>
   StyleSheet.create({
     container: {
       height: cHeight ?? (height / 100 * 14.1),
       flexDirection: "row",
-      marginHorizontal: 16,
+      marginHorizontal: paddingHorizontal,
       backgroundColor: bgColor,
     },
   })
