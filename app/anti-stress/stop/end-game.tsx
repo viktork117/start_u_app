@@ -6,7 +6,7 @@ import ButtonGreen from "@/components/Buttons/ButtonGreen";
 import TextComponent from "@/components/ui/TextComponent";
 import CommentComponent from "@/components/ui/CommentComponent";
 
-const TEXT = "  Молодец!\n\n  Теперь сделай глубокий вдох и выдох.\n\n  Как ты себя чувствуешь? Если тревога осталась — повтори технику через пару минут.";
+const TEXT = "  Молодец!\n\n  Теперь сделай глубокий вдох и выдох. Как ты себя чувствуешь?\n\n  Если тревога осталась — повтори технику через пару минут.";
 
 const COLORS = {
   background: "#D1E7EE",
@@ -29,7 +29,6 @@ const LAYOUT = {
 
 const EndGame = () => {
   const routs = useRouter();
-  // const { height, width } = useWindowDimensions();
 
   const styles = useMemo(() => createStyle(), []);
 
@@ -38,6 +37,7 @@ const EndGame = () => {
 
   return (
     <View style={styles.containerBackground}>
+      <View style={{ height: 90 }} />
       <CommentComponent backgroundColor={"#fff"}>
         <TextComponent
           key={TEXT}

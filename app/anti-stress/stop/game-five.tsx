@@ -29,9 +29,16 @@ const GameFive = () => {
   return (
     <View style={styles.containerBackground}>
       <View style={{ flexDirection: "column", justifyContent: "center", alignItems: "flex-start", width: "100%" }}>
-        <Header bgColor={"#D1E7EE"} />
+        <Header bgColor={"#D1E7EE"} paddingHorizontal={0} />
       </View>
-      <View style={{ flexDirection: "column", justifyContent: "center", alignItems: "center", width: "100%", rowGap: 16, marginBottom: 32 }}>
+      <View style={{
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        rowGap: 16,
+        marginBottom: 32
+        }}>
         <Image
           key={DATA.image}
           source={DATA.image}

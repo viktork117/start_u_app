@@ -6,7 +6,7 @@ import React, {
 } from "react";
 import {
   StyleSheet,
-  Vibration,
+  // Vibration,
   View,
 } from "react-native";
 import { BaseButton } from "react-native-gesture-handler";
@@ -18,7 +18,7 @@ const BaseButtonUI: FC<ButtonsBaseProps> = ({
   style,
   children
 }) => {
-  const { vibrate } = Vibration;
+  // const { vibrate } = Vibration;
 
   const styles = useMemo(() => fnGetStyles(), []);
 
@@ -26,9 +26,9 @@ const BaseButtonUI: FC<ButtonsBaseProps> = ({
     onPress();
   }, [onPress]);
 
-  const vibration = useCallback(() => {
-    vibrate(60);
-  }, [vibrate]);
+  // const vibration = useCallback(() => {
+  //   vibrate(60);
+  // }, [vibrate]);
 
   return (
     <BaseButton
@@ -37,7 +37,7 @@ const BaseButtonUI: FC<ButtonsBaseProps> = ({
         styles.button,
         style,
       ]}>
-      <View onTouchStart={vibration}>
+      <View>
         {children}
       </View>
     </BaseButton>

@@ -83,6 +83,7 @@ const Container: FC<ContainerProps> = ({
           <ButtonGreen text={"Начинаем"} onClick={onPressGo} textColor={"#FFFFFF"} />
         </View>
       </View>
+      <View />
     </SafeAreaView>
   )
 };
@@ -96,17 +97,15 @@ const fnStyles = (
     paddingHorizontal: 16,
     backgroundColor: bgcolor,
     flexDirection: "column",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
   },
   container: {
     display: "flex",
-    flex: 1,
     flexDirection: "column",
     justifyContent: "flex-start",
   },
   containerChild: {
     rowGap: 30,
-    marginTop: height / 100 * 14.08
   },
   text: {
     color: "#000000",

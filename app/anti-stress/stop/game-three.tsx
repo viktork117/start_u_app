@@ -1,16 +1,16 @@
+import { useRouter } from "expo-router";
 import React, { memo, useCallback, useMemo } from "react";
 import { Image, StyleSheet, useWindowDimensions, View } from "react-native";
-import { useRouter } from "expo-router";
 
 import TextComponent from "@/components/ui/TextComponent";
 
 import ButtonGreen from "@/components/Buttons/ButtonGreen";
 import Header from "@/components/Header";
 
+import CommentComponent from "@/components/ui/CommentComponent";
 import ImageTwo from "../../../assets/images/icons/Group 8.png";
 import first from "../../../assets/images/textGame/Шаг 2.png";
 import second from "../../../assets/images/textGame/подумай.png";
-import CommentComponent from "@/components/ui/CommentComponent";
 
 const DATA = {
   text: "  Задай себе вопросы:\n\n  1. «Что я сейчас чувствую?» (гнев, страх, растерянность)\n\n  2. «Почему я так реагирую?» (триггер: дедлайн, конфликт)\n\n  3. «Это соответствует реальности?»\n\n Оцени мысли рационально. ",
@@ -30,7 +30,7 @@ const GameTwo = () => {
   return (
     <View style={styles.containerBackground}>
       <View style={{ flexDirection: "column", justifyContent: "center", alignItems: "flex-start", width: "100%" }}>
-        <Header bgColor={"#D1E7EE"} />
+        <Header bgColor={"#D1E7EE"} paddingHorizontal={0} />
       </View>
       <View style={{ flexDirection: "column", justifyContent: "center", alignItems: "center", width: "100%", rowGap: 16, marginBottom: 32 }}>
         <Image
@@ -45,21 +45,21 @@ const GameTwo = () => {
           resizeMode="center"
           style={{  height: 39 }}
         />
-        <CommentComponent backgroundColor={"#fff"}>
-          <TextComponent
-            key={DATA.text}
-            text={DATA.text}
-            color={"#000000"}
-            variant="NS_L"
-            variantSize="B"
-          /> 
-        </CommentComponent>
       </View>
+      <CommentComponent backgroundColor={"#fff"}>
+        <TextComponent
+          key={DATA.text}
+          text={DATA.text}
+          color={"#000000"}
+          variant="NS_L"
+          variantSize="B"
+        /> 
+      </CommentComponent>
       <View style={styles.container}>
         <Image
           key={ImageTwo}
           source={ImageTwo}
-          style={{ height:  height / 100 * 15 }}
+          style={{ height:  height / 100 * 20 }}
           resizeMode="contain"
         />
       </View>
@@ -88,9 +88,9 @@ const createStyle = () =>
       rowGap: 16,
     },
     container: {
-      flex: 1,
+      // flex: 1,
       flexDirection: "column",
-      alignItems: "flex-start",
+      alignItems: "center",
       rowGap: 15,
     }
   })
